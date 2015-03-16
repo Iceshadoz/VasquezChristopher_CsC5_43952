@@ -2,7 +2,7 @@
  * File:   main.cpp
  * Author: Christopher Vasquez
  * Created on March 11, 2015, 9:13 AM
- * Purpose: Chp3 Gaddis Homework problem 3
+ * Purpose: Chp3 Gaddis Homework problem 5
  */
 
 #include <iostream>
