@@ -6,6 +6,8 @@
  */
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 using namespace std;
 //User Libraries
 
@@ -14,8 +16,11 @@ using namespace std;
 //Function Prototypes
 
 //Execution Begins Here
+
 int main(int argc, char** argv) {
+    srand(time(0));
         //General Menu Format
+    
     //Display the selection
     cout<<"Type 1 to solve problem 1"<<endl;
     cout<<"Type 2 to solve problem 2"<<endl;
@@ -29,11 +34,11 @@ int main(int argc, char** argv) {
     cout<<"Type 10 to solve problem 10"<<endl;
     cout<<"Type anything else to quit with no solutions."<<endl;
     //Read the choice
-    char choice;
+    int choice;
     cin>>choice; 
     //Solve a problem that has been chosen.
     switch(choice){
-        case '1':{
+        case 1:{
             int num1, num2;
         
             cout<<"Enter two number, and I'll determine which number is"
@@ -51,7 +56,7 @@ int main(int argc, char** argv) {
             }
                 break;
         }
-        case '2':{
+        case 2:{
             int roman;
             cout<<"Enter a number from 1-10, and I'll give you its Roman"
                   "Numeral"<<endl;
@@ -105,7 +110,7 @@ int main(int argc, char** argv) {
                 }
             }
                 break;
-        case '3':{
+        case 3:{
             int magicD,magicM,magicY;
             cout<<"I'm going to determine if a date you enter is magic or "
                    "not. Please enter a Month in numerical format"<<endl;
@@ -121,34 +126,156 @@ int main(int argc, char** argv) {
             }
         }
                 break;
-        case '4':{
-                
+        case 5:{
+            unsigned int weight,height;
+            cout<<"I'll determine your BMI, please enter your weight in"
+                  " pounds."<<endl;
+            cin>>weight;
+            cout<<"Now enter your height in inches"<<endl;
+            cin>>height;
+            float bmi= static_cast<float>(weight*703)/(height*height);
+            if(bmi <18.5){
+                cout<<"Your BMI is "<<bmi<<", whivh is underweight"<<endl;
+            }else if(bmi > 25.0){
+                cout<<"Your BMi is "<<bmi<<", which is overweight"<<endl;
+            }else{
+                cout<<"Your BMI is "<<bmi<< ",which is normal"<<endl;
+            }
+            
         }
                 break;
-        case '5':{
-                
+        case 6:{
+            unsigned int mass;
+            cout<<"I'll determine if if an object si too heavy or too light"
+                  ". Please enter the object's mass"<<endl;
+            cin>>mass;
+            float newtons=static_cast<float>(mass*9.8);
+            if(newtons > 1000){
+                cout<<"That object of "<<newtons<<" newtons is too heavy"
+                    <<endl;
+            }else if(newtons <10){
+                cout<<"That object of "<<newtons<<" newtons is too light"
+                    <<endl;
+            }else{
+                cout<<"That object is just fine, it weighs "<<newtons<<
+                      " newtons"<<endl;
+            }
         }
                 break;        
-        case '6':{
-                
+        case 4:{
+            unsigned int triWid1, triLen1, triWid2, triLen2;
+            cout<<"I'll calcuate the area of two triangles, and tell you which"
+                    " area is greater"<<endl;
+            cout<<"Please enter the first triangle's width"<<endl;
+            cin>>triWid1;
+            cout<<"Please enter the first triangle's length"<<endl;
+            cin>>triLen1;
+            cout<<"Please enter the second triangle's width"<<endl;
+            cin>>triWid2;
+            cout<<"Please enter the second triangle's length"<<endl;
+            cin>>triLen2;
+            unsigned int area1= triWid1*triLen1;
+            unsigned int area2= triWid2*triLen2;
+            if(area1==area2){
+                cout<<"The areas of both triangles are the same!"<<endl;
+            }else if(area1>area2){
+                cout<<"The area of triangle 1is greater then the area of "
+                      "triangle 2"<<endl;
+            }else{
+                cout<<"The area of triangle 2 is greater then the area of "
+                     "triangle 1"<<endl;
+            }
+            
+              
         }
                 break;
-        case '7':{
-                
+        case 7:{
+            unsigned int second;
+            cout<<"Enter any numbers of seconds, and i'll tell you how many"
+                   "minutes, hours, and days are equal to that many seconds"
+                <<endl;
+                    cin>>second;
+            unsigned int minute= second/60;
+            unsigned int hour= second/3600;
+            unsigned int day= second/86400;
+            if(second>=60){
+            cout<<"Minutes: "<<minute<<endl;
+            }
+            if(second>=3600){
+            cout<<"Hours: "<<hour<<endl;
+            }
+            if(second>=86400){
+            cout<<"Days: "<<day<<endl;
+            }
         }
                 break;
-        case '8':{
-                
+        case 8:{
+            unsigned int quarter, dime, penny, nickle;
+            cout<<"I'll determine if you have an exact dollar amount with the"
+                   " change you have. Please enter the number of quarters"
+                <<endl;
+            cin>>quarter;
+            cout<<"Enter the number of dimes"<<endl;
+            cin>>dime;
+            cout<<"Enter the number of nickels"<<endl;
+            cin>>nickle;
+            cout<<"Enter the number of pennies"<<endl;
+            cin>>penny;
+            if((quarter*25)+(dime*10)+(nickle*5)+(penny)>100){
+                cout<<"Your total is more than a dollar"<<endl;
+            }else if((quarter*25)+(dime*10)+(nickle*5)+(penny)<100){
+                cout<<"Your total is less than a dollar"<<endl;
+            }else{
+                cout<<"Congratulations, you won the dollar game!"<<endl;
+            }
         }
                 break;
-        case '9':{
-                
+        case 9:{
+            unsigned int rNum1, rNum2, answer;
+            rNum1 =rand() %500;
+            rNum2 =rand() %500;
+            cout<<rNum1<<endl;
+            cout<<rNum2<<endl;
+            cout<<"+"<<endl;
+            cout<<"__________"<<endl;
+            cout<<"What is the correct answeer?"<<endl;
+            cin>>answer;
+            if(answer == rNum1+rNum2){
+                cout<<"Your answer is correct "<<endl;
+            }else{
+                cout<<"The correct answer is "<< rNum1 + rNum2<<endl;
+            }
         }
                 break;
-        case '10':{
-                
-        }
+        case 10:{
+            unsigned int quanity;
+            cout<<"How many unites are you buying?"<<endl;
+            cin>>quanity;
+            if(quanity>=10 && quanity<=19)
+            {
+                cout<<"The amount is owed is "<<quanity*99 - 
+                        static_cast<float>(quanity *.2)*(99)<<endl;
+            }else if(quanity>=10 && quanity<=49)
+            {
+                cout<<"The amount is owed is "<<quanity*99 - 
+                        static_cast<float>(quanity *.3)*(99)<<endl;
+            }else if(quanity>=50 && quanity<=99)
+            {
+                cout<<"The amount is owed is "<<quanity*99 - 
+                        static_cast<float>(quanity *.4)*(99)<<endl;
+            }else if(quanity>=100)
+            {
+                cout<<"The amount is owed is "<<quanity*99 - 
+                        static_cast<float>(quanity *.5)*(99)<<endl;
+            }else if(quanity>0)
+            {
+                cout<<"The amount is owed is "<<quanity*99<<endl;
+            }else
+            {
+                cout<<"input not valid"<<endl;
+            }
                 break;
+        }
     }
     
     
