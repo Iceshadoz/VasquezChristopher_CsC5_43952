@@ -6,8 +6,7 @@
  */
 
 #include <iostream>
-#include <math.h>
-#include <iomanip>
+#include <string>
 using namespace std;
 
 //Global Constants
@@ -16,13 +15,15 @@ float const PI=3.14159265;
 
 //Execution begins here
 int main(int argc, char** argv) {
-    float number;
-    cout<<"Enter a number(in radians) to determine the sine, cosine, and"
-          " tangent of that angle"<<endl;
-    cin>>number;
-    cout<<"Cosine: "<<setprecision(4)<<showpoint<<fixed<<cos (number*PI/180)<<endl;
-    cout<<"Sine: "<<setprecision(4)<<showpoint<<fixed<<sin (number*PI/180)<<endl;
-    cout<<"Tangent "<<setprecision(4)<<showpoint<<fixed<<tan (number*PI/180)<<endl;
+                string plus[10];
+                plus[0]="+";
+                for(int i=0;i<10;i++){
+                    cout<<plus[i]<<endl;
+                    plus[i+1]=plus[i]+"+";
+                }
+                for(int j=9;j>=0;j--){
+                    cout<<plus[j]<<endl;
+                }
     return 0;
 }
 
