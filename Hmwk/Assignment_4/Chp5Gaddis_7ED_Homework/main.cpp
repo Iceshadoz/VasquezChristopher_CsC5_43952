@@ -41,9 +41,10 @@ int main(int argc, char** argv) {
         case 1:{
             int posNum,sumNUM;
             cout<<"Adding Problem"<<endl;//Problem 1
-            while(posNum<0){
             cout<<"Please enter a positive integer"<<endl;
             cin>>posNum;
+                while(posNum<0){
+                cin>>posNum;
                 cout<<"I'm sorry, your number is invalid, please try again"
                     <<endl;
             }
@@ -99,16 +100,17 @@ int main(int argc, char** argv) {
         case 6:{
             int hour,distnce;
             cout<<"Train MPH Problem"<<endl;//Problem 6
-            
-            while(hour<=0){
             cout<<"How long did the train travel?"<<endl;
             cin>>hour;
+            while(hour<=0){
             cout<<"Invalid input, please try again"<<endl;
+            cin>>hour;
             }
-            while(distnce<=0){
             cout<<"How far did the train travel?"<<endl;
             cin>>distnce;
+            while(distnce<=0){
                 cout<<"Invalid input, please try again"<<endl;
+                cin>>distnce;
             }
             cout<<"Hours      Distance"<<endl;
             cout<<"-----      ---------------------"<<endl;
@@ -202,10 +204,10 @@ int main(int argc, char** argv) {
    
                 break;
         }
-        case 10:{
+        case 10:{//Problem 23
                 string plus[10];
                 plus[0]="+";
-                ///*
+                /*
                 plus[1]="++";
                 plus[2]="+++";
                 plus[3]="++++";
@@ -215,9 +217,9 @@ int main(int argc, char** argv) {
                 plus[7]="+++++++++";
                 plus[8]="++++++++++";
                 plus[9]="+++++++++++";
-                //You can erase the comments to test the code below out*/
+                */
                 for(int i=0;i<10;i++){
-                // plus[i+1]=plus[i]+"+";
+                 plus[i+1]=plus[i]+"+";
                 //The code above was suppose to assign my array numbers, but
                 //for some reason i'm getting a logic error. Something in my
                 //Code is bugging it. I've tried copying and pasting the same 
