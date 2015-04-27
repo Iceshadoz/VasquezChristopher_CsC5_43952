@@ -14,6 +14,7 @@ using namespace std;
 //User Libraries
 
 //Global Constants
+const float grav=9.8;
 
 //Function Prototypes
 int calRetl(float, float markup);//problem 1 whole and markup
@@ -25,6 +26,9 @@ float getSale();//Problem 3
 void findHgh(float num1, float num2, float num3, float num4);//Problem 3
 int getNum();//Problem 4
 void findLow(int num1,int num2,int num3,int num4,int num5);//Problem 4
+float fallObj(float time);//Problem 5 gravity
+float kinEngy(float mass, float velocity);//Problem 6
+int temptur(int faren);//Problem 7
 
 //Execution begins here!
 int main(int argc, char** argv) {
@@ -114,15 +118,42 @@ int main(int argc, char** argv) {
                 break;
         }
         case 5:{
+            float time;
+            cout<<"Welcome to problem 5, please enter a time to find out the "
+                <<"distance an object has traveled"<<endl;
+            cin>>time;
+            fallObj(time);
             
+            for(int i=0;i<=10;i++){
+            time=i;
+            fallObj(time);
+            }
                 break;
         }
         case 6:{
-
+            float mass, velo;
+            cout<<"Welcome to problem 6, I'm here to determine the kinectic"
+                <<" energty an object has based on its mass and velocity"<<endl;
+            cout<<"Please enter the onject's mass"<<endl;
+            cin>>mass;
+            cout<<"Please enter the object's velocity"<<endl;
+            cin>>velo;
+            kinEngy(mass, velo);
                 break;
         }
         case 7:{
-
+            int farenht;
+            cout<<"Welcome to problem 7, I'm here to determine the Celsius of"
+                <<" equivalent of a temperature that is given in Fahrenheit"
+                <<endl;
+            cout<<"What is the temperature you want to give in Fahrenheit?"
+                <<endl;
+            cin>>farenht;
+            temptur(farenht);
+            for(int i=0;i<=20;i++){
+            farenht=i;
+            temptur(farenht);
+            }
                 break;
         }
         case 8:{
@@ -232,3 +263,25 @@ int getNum(){
     cout<<"The Lowest number of accidents is "<<low<<endl;
     return ;
  }
+ float fallObj(float time){
+     float distan;
+     distan= (0.5*grav)*(time*time);
+     cout<<"The distance the object traveled in "<<time<<" seconds is "
+         <<distan<<" meters"<<endl;
+     
+     return 0;
+ }
+  float kinEngy(float mass, float velocity){
+     float KE;
+     KE= (0.5*mass)*(velocity*velocity);
+     cout<<"The Kinectic Energy the object produced is "<<KE<<" energy"
+         <<endl;
+     
+     return 0;
+ }
+  int temptur(int faren){
+      float celsius=(0.5/0.9)*(faren-32);
+      cout<<"The celsius equivalent to "<<faren<<" is "<<setprecision(2)<<fixed
+          <<showpoint<<celsius<<" degrees Celsius"<<endl;
+      
+  }
