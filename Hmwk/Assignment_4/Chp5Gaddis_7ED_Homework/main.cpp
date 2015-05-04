@@ -41,10 +41,11 @@ int main(int argc, char** argv) {
         case 1:{
             int posNum,sumNUM;
             cout<<"Adding Problem"<<endl;//Problem 1
-            while(posNum<0){
             cout<<"Please enter a positive integer"<<endl;
             cin>>posNum;
+            while(posNum<0){
                 cout<<"I'm sorry, your number is invalid, please try again"
+                cin>>posNum;
                     <<endl;
             }
            
