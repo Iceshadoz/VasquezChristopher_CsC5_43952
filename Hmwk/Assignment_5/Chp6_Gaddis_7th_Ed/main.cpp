@@ -9,6 +9,8 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <ctime>
+#include <math.h>
 using namespace std;
 
 //User Libraries
@@ -29,9 +31,16 @@ void findLow(int num1,int num2,int num3,int num4,int num5);//Problem 4
 float fallObj(float time);//Problem 5 gravity
 float kinEngy(float mass, float velocity);//Problem 6
 int temptur(int faren);//Problem 7
+int coinTos(int coin);//Problem 8
+float presVal(float future, float intRate,int numYears);//Problem 9
+void getScor(int &score );//Problem 10
+void calAvg(int& score1,int& score2,int& score3,int& score4,int& score5);//Problem 10
+int finLowe(int& score1,int& score2,int& score3,int& score4,int& score5);
+bool isPrime(int num);//PRoiblem 21
 
 //Execution begins here!
 int main(int argc, char** argv) {
+    srand(time(0));
     //General Menu Format
     
     //Display the selection
@@ -157,17 +166,76 @@ int main(int argc, char** argv) {
                 break;
         }
         case 8:{
-
+            int coin;
+            cout<<"Welcome to problem 8, please enter how many times you want "
+                <<"toss the coin"<<endl;
+            cin>>coin;
+            coinTos(coin);
                 break;
         }
         case 9:{
-
+            float future, intRate;
+            int numYear;
+            cout<<"Welcome to problem 9, please enter the future rate you wish "
+                <<"to see"<<endl;
+            cin>>future;
+            cout<<"Now enter your interest rate"<<endl;
+            cin>>intRate;
+            cout<<"Now the number of years you"<<endl;
+            cin>>numYear;
+            
+            presVal(future, intRate, numYear);
                 break;
         }
         case 10:{
-
+            int score1,score2,score3,score4,score5;
+            cout<<"Welcome to problem 10, please enter your test scores"<<endl;
+            cout<<"Enter score one"<<endl;
+            cin>>score1;
+            cout<<"Enter score Two"<<endl;
+            cin>>score2;
+            cout<<"Enter score Three"<<endl;
+            cin>>score3;
+            cout<<"Enter score Four"<<endl;
+            cin>>score4;
+            cout<<"Enter score Five"<<endl;
+            cin>>score5;
+            getScor(score1);
+            getScor(score2);
+            getScor(score3);
+            getScor(score4);
+            getScor(score5);
+            finLowe(score1,score2,score3,score4,score5);
+            calAvg(score1,score2,score3,score4,score5);
                 break;
         }
+        case 11:{
+            unsigned int prime;
+            cout<<"Welcome to porlbme 21, please enter a digit, and i'll tell"
+                <<" you if it's prime!"<<endl;
+            cin>>prime;
+            isPrime(prime);
+            break;
+        }
+        case 12:{
+            
+            cout<<"Welcome to problem 22. This problem takes the function used "
+                <<" in problem 21 to take all the prime numbers between one "
+                <<"and 100, "
+                    for(int i=1;i<=100;i++){
+                        isPrime(i);
+                    }
+            break;
+        }
+        case 13:{
+            
+            break;
+        }
+        case 14:{
+            
+            break;
+        }
+        
     return 0;
 }
 }
@@ -274,14 +342,107 @@ int getNum(){
   float kinEngy(float mass, float velocity){
      float KE;
      KE= (0.5*mass)*(velocity*velocity);
-     cout<<"The Kinectic Energy the object produced is "<<KE<<" energy"
+     cout<<"The Kinetic Energy the object produced is "<<KE<<" energy"
          <<endl;
      
      return 0;
  }
   int temptur(int faren){
       float celsius=(0.5/0.9)*(faren-32);
-      cout<<"The celsius equivalent to "<<faren<<" is "<<setprecision(2)<<fixed
+      cout<<"The Celsius equivalent to "<<faren<<" is "<<setprecision(2)<<fixed
           <<showpoint<<celsius<<" degrees Celsius"<<endl;
+      return 0;
+  }
+  int coinTos(int coin){
+      srand(time(0));
+      int heads;
+      for(int i=0;i<=coin;i++){
+          srand(time(0));
+          heads=rand() % 1;
+          if(heads==0){
+              cout<<"The coin is heads!"<<endl;
+          }else if(heads==1){
+              cout<<"The coin is tails!"<<endl;
+          }
+      }
+      return 0;
+  }
+  float presVal(float future, float intRate, int numYears){
+      float present=(future)/pow((1+intRate),numYears);
+      cout<<"The present value you must have is "<<present<<endl;
+      return 0;
+  }
+  void getScor(int &score ){
+         while(score<0&&score>100){
+          cout<<"input invalid, please enter another number greater than 0"
+              <<endl;
+          cin>>score;
+          return;
+    }
+  }
+  void calAvg(int& score1,int& score2,int& score3,int& score4,int& score5){
+     if(score1==200){
+        score1=0;
+     }
+     if(score2==200){
+        score2=0;
+     }
+     if(score3==200){
+        score3=0;
+     }
+     if(score4==200){
+        score4=0;
+     }
+     if(score5==200){
+        score5=0;
+     }
+      float average=(score1+score2+score3+score4+score5)/4.0;
+      cout<<"The average of the four scores is "<<average<<"%"<<endl;
+      return;
+  }
+  int finLowe(int& score1,int& score2,int& score3,int& score4,int& score5){
+    int low;
+    if(score1<score2){
+       low=score1;
+    }else{
+       low=score2;
+    }
+    if(low>score3){
+       low=score3;
+    }
+    if(low>score4){
+       low=score4;
+    }
+    if(low>score5){
+       low=score5;
+    }
+    if(low==score1){
+        score1=200;
+    }
+    if(low==score2){
+        score2=200;
+    }
+    if(low==score3){
+        score3=200;
+    }
+    if(low==score4){
+        score4=200;
+    }
+    if(low==score5){
+        score5=200;
+    }
+    cout<<"The Lowest number of accidents is "<<low<<endl;
+    return 0;
+  }
+  bool isPrime(int number){
+      bool prime;
+      if(number%2==0||number%3==0||number%6==0){
+          prime=false;
+          cout<<"Looks like the number is NOT prime!"<<endl;
+      }else{
+          prime=true;
+          cout<<"Looks like the number is prime!"<<endl;
+      }
       
+      return prime;
   }
