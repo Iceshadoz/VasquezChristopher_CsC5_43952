@@ -11,6 +11,7 @@
 #include <string>
 #include <ctime>
 #include <math.h>
+#include <fstream>
 using namespace std;
 
 //User Libraries
@@ -37,6 +38,12 @@ void getScor(int &score );//Problem 10
 void calAvg(int& score1,int& score2,int& score3,int& score4,int& score5);//Problem 10
 int finLowe(int& score1,int& score2,int& score3,int& score4,int& score5);
 bool isPrime(int num);//PRoiblem 21
+void getJudgeData(int &score);//Problem 11
+void calcSco(int& score1,int& score2,int& score3,int& score4,int& score5);
+int finHigh(int& score1,int& score2,int& score3,int& score4,int& score5);
+int numEmp();//Problem12
+int days(int employ);
+int calEmp(int empo, int day);
 
 //Execution begins here!
 int main(int argc, char** argv) {
@@ -211,34 +218,61 @@ int main(int argc, char** argv) {
         }
         case 11:{
             unsigned int prime;
-            cout<<"Welcome to porlbme 21, please enter a digit, and i'll tell"
+            cout<<"Welcome to problem 21, please enter a digit, and i'll tell"
                 <<" you if it's prime!"<<endl;
             cin>>prime;
             isPrime(prime);
             break;
         }
         case 12:{
+            ofstream primefile;
+            primefile.open("prime.txt");
             
             cout<<"Welcome to problem 22. This problem takes the function used "
-                <<" in problem 21 to take all the prime numbers between one "
-                <<"and 100, "
+                <<"in problem 21 to take all the prime numbers between one "
+                <<"and 100, "<<endl;
                     for(int i=1;i<=100;i++){
                         isPrime(i);
+                        if(isPrime(i)==true){
+                        primefile << i <<" "<<endl;  
+                        }
+                        
                     }
+            primefile.close();
             break;
         }
         case 13:{
+            int judOne,judTwo,judTre,judFor,judFiv;
             
+            cout<<"Welcome to problem 11. This problem takes five judges score,"
+                  " drops the lowest and highest, and then averages the rest."
+                  " use whole numbers"<<endl;//output can be decimal, but not inputs
+            getJudgeData(judOne);
+            getJudgeData(judTwo);
+            getJudgeData(judTre);
+            getJudgeData(judFor);
+            getJudgeData(judFiv);
+            calcSco(judOne,judTwo,judTre,judFor,judFiv);
             break;
         }
         case 14:{
+            int day, employ;
+            float calEmpl;
+            cout<<"Welcome to problem 12, The employee absent day problem"
+                <<endl;
+            employ=numEmp();
+            day=days(employ);
+            calEmpl=calEmp(employ, day);
+            cout<<"The average day missed per employee is "<<calEmpl;
+            
+        }
             
             break;
         }
         
     return 0;
 }
-}
+
 //Problem 1 function
 int calRetl(float whleCst, float markup){
     markup=markup/100;
@@ -431,12 +465,16 @@ int getNum(){
     if(low==score5){
         score5=200;
     }
-    cout<<"The Lowest number of accidents is "<<low<<endl;
     return 0;
   }
   bool isPrime(int number){
       bool prime;
-      if(number%2==0||number%3==0||number%6==0){
+      if( number==2||number==3||number==5)
+      {
+          prime=true;
+          cout<<"Looks like the number is prime!"<<endl;
+      }
+      else if(number%2==0||number%3==0||number%6==0||number%5==0){
           prime=false;
           cout<<"Looks like the number is NOT prime!"<<endl;
       }else{
@@ -446,3 +484,93 @@ int getNum(){
       
       return prime;
   }
+  void getJudgeData(int&score){
+      cout<<"Please enter this judge's score"<<endl;
+      cin>>score;
+      cout<<score<<endl;
+      while(score<0||score>10){
+         cout<<"Invalid score, please enter a correct score"<<endl;
+         cin>>score;
+      }
+      
+  }
+ int finHigh(int& score1,int& score2,int& score3,int& score4,int& score5){
+    int high;
+    if(score1>score2){
+       high=score1;
+    }else{
+       high=score2;
+    }
+    if(high<score3){
+       high=score3;
+    }
+    if(high<score4){
+       high=score4;
+    }
+    if(high<score5){
+       high=score5;
+    }
+    if(high==score1){
+        score1=200;
+    }
+    if(high==score2){
+        score2=200;
+    }
+    if(high==score3){
+        score3=200;
+    }
+    if(high==score4){
+        score4=200;
+    }
+    if(high==score5){
+        score5=200;
+    }
+    return 0;
+  }
+ void calcSco(int& score1,int& score2,int& score3,int& score4,int& score5){
+            finHigh(score1,score2,score3,score4,score5);
+            finLowe(score1,score2,score3,score4,score5);
+     if(score1==200){
+        score1=0;
+     }
+     if(score2==200){
+        score2=0;
+     }
+     if(score3==200){
+        score3=0;
+     }
+     if(score4==200){
+        score4=0;
+     }
+     if(score5==200){
+        score5=0;
+     }
+     int average=(score1+score2+score3+score4+score5)/3.0;
+
+      cout<<"The average of the Three scores is "<<average<<endl;
+      return;
+  }
+ int numEmp(){
+     int employ;
+     cout<<"Please enter the number of employees"<<endl;
+     cin>>employ;
+     while(employ<0){
+         cout<<"Input invalid, pleas try a positive number"<<endl;
+         cin>>employ;
+     }
+     return employ;
+ }
+ int days(int employ){
+     int days,count;
+     for(int i=1;i<=employ;i++){
+         cout<<"Please enter the amount of days employee "<<i<<" missed"<<endl;
+         cin>>count;
+         days=days+count;
+     }
+     days=days-employ;
+     return days;
+ }
+ int calEmp(int empo, int day){
+     float calc=static_cast<float>(day)/static_cast<float>(empo);
+     return calc;
+ }
